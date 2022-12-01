@@ -12,6 +12,10 @@ pub use multihash_derive::Multihash;
 #[mh(alloc_size = 64)]
 pub enum Code {
     /// SHA-256 (32-byte hash size)
+    #[cfg(feature = "sha1")]
+    #[mh(code = 0x11, hasher = crate::Sha1)]
+    Sha1,
+    /// SHA-256 (32-byte hash size)
     #[cfg(feature = "sha2")]
     #[mh(code = 0x12, hasher = crate::Sha2_256)]
     Sha2_256,
@@ -96,6 +100,7 @@ mod tests {
     use super::*;
     use crate::hasher::Hasher;
     use crate::hasher_impl::sha3::{Sha3_256, Sha3_512};
+    use crate::hasher_impl::sha1::Sha1;
     use crate::multihash::MultihashDigest;
 
     #[test]
@@ -120,6 +125,20 @@ mod tests {
         let hash2 = Code::Sha3_512.digest(b"hello world");
         assert_eq!(hash.code(), u64::from(Code::Sha3_512));
         assert_eq!(hash.size(), 64);
+        assert_eq!(hash.digest(), digest);
+        assert_eq!(hash, hash2);
+    }
+
+    #[test]
+    fn test_hasher_sha1() {
+        let mut hasher = Sha1::default();
+        hasher.update(b"hello world");
+        let digest = hasher.finalize();
+        let hash = Code::Sha1.wrap(digest).unwrap();
+        let hash2 = Code::Sha1.digest(b"hello world");
+
+        assert_eq!(hash.code(), u64::from(Code::Sha1));
+        assert_eq!(hash.size(), 20);
         assert_eq!(hash.digest(), digest);
         assert_eq!(hash, hash2);
     }
