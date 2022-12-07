@@ -200,7 +200,7 @@ macro_rules! derive_rustcrypto_hasher {
 pub mod sha1 {
     use super::*;
 
-    derive_rustcrypto_hasher!(::sha1::Sha1, Sha1, 20);
+    derive_rustcrypto_hasher!(sha_1::Sha1, Sha1, 20);
 }
 
 #[cfg(feature = "sha2")]

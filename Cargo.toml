@@ -21,7 +21,7 @@ alloc = ["core2/alloc"]
 multihash-impl = ["derive"]
 derive = ["multihash-derive"]
 arb = ["quickcheck", "rand", "arbitrary"]
-secure-hashes = ["blake2b", "blake2s", "blake3", "sha2", "sha3"]
+secure-hashes = ["blake2b", "blake2s", "blake3", "sha1","sha2", "sha3"]
 scale-codec = ["parity-scale-codec"]
 serde-codec = ["serde", "serde-big-array"]
 
@@ -48,7 +48,7 @@ blake2b_simd = { version = "1.0.0", default-features = false, optional = true }
 blake2s_simd = { version = "1.0.0", default-features = false, optional = true }
 blake3 = { version = "1.2.0", default-features = false, optional = true }
 digest = { version = "0.10.1", default-features = false, optional = true }
-sha-1 = { version = "0.10.0", default-features = false, optional = true }
+sha-1 = { version = "0.10.0", default-features = false, optional = true, package = "sha1" }
 sha-2 = { version = "0.10.0", default-features = false, optional = true, package = "sha2" }
 sha-3 = { version = "0.10.0", default-features = false, optional = true, package = "sha3" }
 strobe-rs = { version = "0.7.0", default-features = false, optional = true }
