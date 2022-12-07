@@ -871,9 +871,9 @@ dependencies = [
 
 [[package]]
 name = "strobe-rs"
-version = "0.7.1"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1eeeca13db3ebad86026e7c7cad15f5779507c6053bb196207d142430bcbee1d"
+checksum = "fabb238a1cccccfa4c4fb703670c0d157e1256c1ba695abf1b93bd2bb14bab2d"
 dependencies = [
  "bitflags",
  "byteorder",
